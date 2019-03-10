@@ -1,0 +1,10 @@
+version: '3'
+services:
+
+  webapp:
+    build: .
+    command: 'python lib/http_server.py'
+    volumes:
+      - .:/app 
+    ports:
+      - "8080:8080"
