@@ -7,7 +7,7 @@ cleanup: stop
 run:
 	docker-compose up
 
-check-number-to-text:
+check:
 	docker-compose run --entrypoint "coverage run number_to_text/number_to_text_tests.py" webapp
 
 shell:

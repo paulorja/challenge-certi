@@ -1,12 +1,12 @@
-FROM python:3
+FROM ubuntu:latest
 
-RUN pip install coverage
-RUN pip install requests
+RUN apt-get update -y
+RUN apt-get install -y python-pip python-dev build-essential
 
-RUN mkdir -p /app
-WORKDIR /app
 COPY . /app
+WORKDIR /app
 
-EXPOSE 8080
+RUN pip install -r requirements.txt
 
-CMD ["python", "lib/http_server.py"]
+ENTRYPOINT ["python"]
+CMD ["http_server.py"]

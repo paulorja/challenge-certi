@@ -30,7 +30,41 @@ class NumberToTextTests(unittest.TestCase):
         result = parser.number_to_text(1)
         self.assertEqual(result, "um")
 
+    def test_should_convert_1_negative_to_text(self):
+        parser = NumberToText()
+        result = parser.number_to_text(-1)
+        self.assertEqual(result, "menos um")
+
+    def test_should_convert_21_to_text(self):
+        parser = NumberToText()
+        result = parser.number_to_text(21)
+        self.assertEqual(result, "vinte e um")
+
+    def test_should_convert_99999_to_text(self):
+        parser = NumberToText()
+        result = parser.number_to_text(99999)
+        self.assertEqual(result, "noventa e nove mil e novecentos e noventa e nove")
+
+    def test_should_convert_54327_to_text(self):
+        parser = NumberToText()
+        result = parser.number_to_text(54327)
+        self.assertEqual(result, "cinquenta e quatro mil e trezentos e vinte e sete")
+
+    def test_should_convert_110_to_text(self):
+        parser = NumberToText()
+        result = parser.number_to_text(110)
+        self.assertEqual(result, "cento e dez")
+
+    def test_should_convert_70007_negative_to_text(self):
+        parser = NumberToText()
+        result = parser.number_to_text(-70007)
+        self.assertEqual(result, "menos setenta mil e sete")
+
+    def test_should_convert_68154_negative_to_text(self):
+        parser = NumberToText()
+        result = parser.number_to_text(68154)
+        self.assertEqual(result, "sessenta e oito mil e cento e cinquenta e quatro")
+
 
 if __name__ == '__main__':
     unittest.main()
-
