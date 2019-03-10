@@ -1,4 +1,4 @@
-web-app:
+challenge-webapp:
   build: .
   volumes:
     - .:/app 
