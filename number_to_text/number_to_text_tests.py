@@ -65,6 +65,31 @@ class NumberToTextTests(unittest.TestCase):
         result = parser.number_to_text(68154)
         self.assertEqual(result, "sessenta e oito mil e cento e cinquenta e quatro")
 
+    def test_should_convert_100_to_text(self):
+        parser = NumberToText()
+        result = parser.number_to_text(100)
+        self.assertEqual(result, "cem")
+
+    def test_should_convert_5100_to_text(self):
+        parser = NumberToText()
+        result = parser.number_to_text(5100)
+        self.assertEqual(result, "cinco mil e cem")
+
+    def test_should_convert_5113_to_text(self):
+        parser = NumberToText()
+        result = parser.number_to_text(5113)
+        self.assertEqual(result, "cinco mil e cento e treze")
+
+    def test_should_convert_80019_negative_to_text(self):
+        parser = NumberToText()
+        result = parser.number_to_text(-80019)
+        self.assertEqual(result, "menos oitenta mil e dezenove")
+
+    def test_should_convert_40201_to_text(self):
+        parser = NumberToText()
+        result = parser.number_to_text(40201)
+        self.assertEqual(result, "quarenta mil e duzentos e um")
+
 
 if __name__ == '__main__':
     unittest.main()

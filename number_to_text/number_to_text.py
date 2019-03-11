@@ -1,6 +1,7 @@
 import unidades as uni
 import dezenas as dez
 import centenas as cen
+import excecoes as exc
 
 
 class NumberToText():
@@ -22,6 +23,8 @@ class NumberToText():
         txt_centena = None
         txt_unidade_milhar = None
         txt_dezena_milhar = None
+
+        dezena = ""
 
         if number < 0:
             txt_sinal = "menos"
@@ -74,16 +77,31 @@ class NumberToText():
 
 
         if txt_centena != None:
-            txt_result += " {}".format(txt_centena)
-            if txt_dezena != None:
+
+            if centena == "1" and dezena == "0" and unidade == "0":
+                txt_result += " {}".format(exc.E100)
+            else:
+                txt_result += " {}".format(txt_centena)
+
+            if txt_dezena != None or txt_unidade != None:
                 txt_result = "{} e".format(txt_result)
 
         if txt_dezena != None:
-            txt_result += " {}".format(txt_dezena)
-            if txt_unidade != None:
-                txt_result = "{} e".format(txt_result)
+
+            txt_dezena_excecao = "{}{}".format(dezena, unidade)
+
+            if txt_dezena_excecao in exc.LIST_EXCECOES_DEZENAS:
+                txt_result += " {}".format(exc.to_text(txt_dezena_excecao))
+            else:
+                txt_result += " {}".format(txt_dezena)
+                if txt_unidade != None:
+                    txt_result = "{} e".format(txt_result)
 
         if txt_unidade != None:
-            txt_result += " {}".format(txt_unidade)
+
+            if dezena == "1":
+                txt_result += ""
+            else:
+                txt_result += " {}".format(txt_unidade)
 
         return txt_result.strip()
